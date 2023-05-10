@@ -56,12 +56,11 @@ import (
 	"image/color"
 	"image/png"
 	"io"
-	"io/ioutil"
 	"log"
 	"os"
 
-	bitset "github.com/skip2/go-qrcode/bitset"
-	reedsolomon "github.com/skip2/go-qrcode/reedsolomon"
+	"github.com/verystar/go-qrcode/bitset"
+	"github.com/verystar/go-qrcode/reedsolomon"
 )
 
 // Encode a QR Code and return a raw PNG image.
@@ -357,14 +356,14 @@ func (q *QRCode) PNG(size int) ([]byte, error) {
 // a larger image is silently written. Negative values for size cause a
 // variable sized image to be written: See the documentation for Image().
 func (q *QRCode) Write(size int, out io.Writer) error {
-	var png []byte
+	var p []byte
 
-	png, err := q.PNG(size)
+	p, err := q.PNG(size)
 
 	if err != nil {
 		return err
 	}
-	_, err = out.Write(png)
+	_, err = out.Write(p)
 	return err
 }
 
@@ -374,15 +373,15 @@ func (q *QRCode) Write(size int, out io.Writer) error {
 // a larger image is silently written. Negative values for size cause a
 // variable sized image to be written: See the documentation for Image().
 func (q *QRCode) WriteFile(size int, filename string) error {
-	var png []byte
+	var p []byte
 
-	png, err := q.PNG(size)
+	p, err := q.PNG(size)
 
 	if err != nil {
 		return err
 	}
 
-	return ioutil.WriteFile(filename, png, os.FileMode(0644))
+	return os.WriteFile(filename, p, os.FileMode(0644))
 }
 
 // encode completes the steps required to encode the QR Code. These include
@@ -417,7 +416,7 @@ func (q *QRCode) encode() {
 
 		p := s.penaltyScore()
 
-		//log.Printf("mask=%d p=%3d p1=%3d p2=%3d p3=%3d p4=%d\n", mask, p, s.penalty1(), s.penalty2(), s.penalty3(), s.penalty4())
+		// log.Printf("mask=%d p=%3d p1=%3d p2=%3d p3=%3d p4=%d\n", mask, p, s.penalty1(), s.penalty2(), s.penalty3(), s.penalty4())
 
 		if q.symbol == nil || p < penalty {
 			q.symbol = s
@@ -513,6 +512,7 @@ func (q *QRCode) encodeBlocks() *bitset.Bitset {
 }
 
 // max returns the maximum of a and b.
+// nolint
 func max(a int, b int) int {
 	if a > b {
 		return a

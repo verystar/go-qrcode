@@ -77,6 +77,7 @@ var (
 type gfElement uint8
 
 // newGFElement creates and returns a new gfElement.
+// nolint
 func newGFElement(data byte) gfElement {
 	return gfElement(data)
 }
@@ -89,6 +90,7 @@ func gfAdd(a, b gfElement) gfElement {
 // gfSub returns a - b.
 //
 // Note addition is equivalent to subtraction in GF(2).
+// nolint
 func gfSub(a, b gfElement) gfElement {
 	return a ^ b
 }

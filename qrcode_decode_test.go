@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"math/rand"
 	"os/exec"
+	"strconv"
 	"strings"
 	"testing"
 )
@@ -122,7 +123,7 @@ func TestDecodeAllCharacters(t *testing.T) {
 
 	// zbarimg has trouble with null bytes, hence start from ASCII 1.
 	for i := 1; i < 256; i++ {
-		content += string(i)
+		content += strconv.Itoa(i)
 	}
 
 	q, err := New(content, Low)
@@ -148,13 +149,13 @@ func TestDecodeFuzz(t *testing.T) {
 	const maxLength int = 128
 
 	for i := 0; i < iterations; i++ {
-		len := r.Intn(maxLength-1) + 1
+		lenght := r.Intn(maxLength-1) + 1
 
 		var content string
-		for j := 0; j < len; j++ {
+		for j := 0; j < lenght; j++ {
 			// zbarimg seems to have trouble with special characters, test printable
 			// characters only for now.
-			content += string(32 + r.Intn(94))
+			content += strconv.Itoa(32 + r.Intn(94))
 		}
 
 		for _, level := range []RecoveryLevel{Low, Medium, High, Highest} {
@@ -179,7 +180,7 @@ func zbarimgCheck(q *QRCode) error {
 	}
 
 	if s != q.Content {
-		q.WriteFile(256, fmt.Sprintf("%x.png", q.Content))
+		_ = q.WriteFile(256, fmt.Sprintf("%x.png", q.Content))
 		return fmt.Errorf("got '%s' (%x) expected '%s' (%x)", s, s, q.Content, q.Content)
 	}
 

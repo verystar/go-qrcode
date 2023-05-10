@@ -7,7 +7,7 @@ import (
 	"errors"
 	"log"
 
-	bitset "github.com/skip2/go-qrcode/bitset"
+	"github.com/verystar/go-qrcode/bitset"
 )
 
 // Data encoding.
@@ -222,7 +222,7 @@ func (d *dataEncoder) classifyDataModes() dataMode {
 	highestRequiredMode := mode
 
 	for i, v := range d.data {
-		newMode := dataModeNone
+		newMode := dataModeNone // nolint
 		switch {
 		case v >= 0x30 && v <= 0x39:
 			newMode = dataModeNumeric
@@ -406,10 +406,10 @@ func (d *dataEncoder) charCountBits(dataMode dataMode) int {
 // dataMode.
 //
 // The number of bits required is affected by:
-//	- QR code type - Mode Indicator length.
-//	- Data mode - number of bits used to represent data length.
-//	- Data mode - how the data is encoded.
-//	- Number of symbols encoded.
+//   - QR code type - Mode Indicator length.
+//   - Data mode - number of bits used to represent data length.
+//   - Data mode - how the data is encoded.
+//   - Number of symbols encoded.
 //
 // An error is returned if the mode is not supported, or the length requested is
 // too long to be represented.

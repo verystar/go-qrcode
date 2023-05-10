@@ -6,7 +6,7 @@ package qrcode
 import (
 	"testing"
 
-	bitset "github.com/skip2/go-qrcode/bitset"
+	bitset "github.com/verystar/go-qrcode/bitset"
 )
 
 func TestFormatInfo(t *testing.T) {
@@ -95,9 +95,8 @@ func TestVersionInfo(t *testing.T) {
 		},
 	}
 
+	var v *qrCodeVersion
 	for i, test := range tests {
-		var v *qrCodeVersion
-
 		v = getQRCodeVersion(Low, test.version)
 
 		result := v.versionInfo()
@@ -143,9 +142,8 @@ func TestNumBitsToPadToCodeoword(t *testing.T) {
 		},
 	}
 
+	var v *qrCodeVersion
 	for i, test := range tests {
-		var v *qrCodeVersion
-
 		v = getQRCodeVersion(test.level, test.version)
 
 		result := v.numBitsToPadToCodeword(test.numDataBits)

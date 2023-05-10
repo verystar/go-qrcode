@@ -6,10 +6,10 @@ package qrcode
 import (
 	"log"
 
-	bitset "github.com/skip2/go-qrcode/bitset"
+	"github.com/verystar/go-qrcode/bitset"
 )
 
-// Error detection/recovery capacity.
+// RecoveryLevel Error detection/recovery capacity.
 //
 // There are several levels of error detection/recovery capacity. Higher levels
 // of error recovery are able to correct more errors, with the trade-off of
@@ -17,16 +17,16 @@ import (
 type RecoveryLevel int
 
 const (
-	// Level L: 7% error recovery.
+	// Low Level L: 7% error recovery.
 	Low RecoveryLevel = iota
 
-	// Level M: 15% error recovery. Good default choice.
+	// Medium Level M: 15% error recovery. Good default choice.
 	Medium
 
-	// Level Q: 25% error recovery.
+	// High Level Q: 25% error recovery.
 	High
 
-	// Level H: 30% error recovery.
+	// Highest Level H: 30% error recovery.
 	Highest
 )
 

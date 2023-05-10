@@ -1,22 +1,19 @@
-# go-qrcode #
+# go-qrcode 
 
-<img src='https://skip.org/img/nyancat-youtube-qr.png' align='right'>
+Fork https://github.com/verystar/go-qrcode
 
-Package qrcode implements a QR Code encoder. [![Build Status](https://travis-ci.org/skip2/go-qrcode.svg?branch=master)](https://travis-ci.org/skip2/go-qrcode)
+
+
+Package qrcode implements a QR Code encoder.
 
 A QR Code is a matrix (two-dimensional) barcode. Arbitrary content may be encoded, with URLs being a popular choice :)
 
 Each QR Code contains error recovery information to aid reading damaged or obscured codes. There are four levels of error recovery: Low, medium, high and highest. QR Codes with a higher recovery level are more robust to damage, at the cost of being physically larger.
 
-## Install
-
-    go get -u github.com/skip2/go-qrcode/...
-
-A command-line tool `qrcode` will be built into `$GOPATH/bin/`.
 
 ## Usage
 
-    import qrcode "github.com/skip2/go-qrcode"
+    import qrcode "github.com/verystar/go-qrcode"
 
 - **Create a 256x256 PNG image:**
 
@@ -35,7 +32,7 @@ All examples use the qrcode.Medium error Recovery Level and create a fixed 256x2
 
 ## Documentation
 
-[![godoc](https://godoc.org/github.com/skip2/go-qrcode?status.png)](https://godoc.org/github.com/skip2/go-qrcode)
+[![godoc](https://godoc.org/github.com/verystar/go-qrcode?status.png)](https://godoc.org/github.com/verystar/go-qrcode)
 
 ## Demoapp
 
@@ -47,7 +44,7 @@ A command-line tool `qrcode` will be built into `$GOPATH/bin/`.
 
 ```
 qrcode -- QR Code encoder in Go
-https://github.com/skip2/go-qrcode
+https://github.com/verystar/go-qrcode
 
 Flags:
   -d	disable QR Code border
@@ -67,7 +64,7 @@ Usage:
 
   2. Save to file if "display" not available:
 
-       qrcode "homepage: https://github.com/skip2/go-qrcode" > out.png
+       qrcode "homepage: https://github.com/verystar/go-qrcode" > out.png
 
 ```
 ## Maximum capacity

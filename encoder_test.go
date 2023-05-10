@@ -8,13 +8,10 @@ import (
 	"reflect"
 	"testing"
 
-	bitset "github.com/skip2/go-qrcode/bitset"
+	bitset "github.com/verystar/go-qrcode/bitset"
 )
 
 func TestClassifyDataMode(t *testing.T) {
-	type Test struct {
-	}
-
 	tests := []struct {
 		data   []byte
 		actual []segment
@@ -53,7 +50,11 @@ func TestClassifyDataMode(t *testing.T) {
 
 	for _, test := range tests {
 		encoder := newDataEncoder(dataEncoderType1To9)
-		encoder.encode(test.data)
+		_, err := encoder.encode(test.data)
+
+		if err != nil {
+			t.Errorf("Got error %v", err)
+		}
 
 		if !reflect.DeepEqual(test.actual, encoder.actual) {
 			t.Errorf("Got %v, expected %v", encoder.actual, test.actual)
@@ -62,12 +63,12 @@ func TestClassifyDataMode(t *testing.T) {
 }
 
 func TestByteModeLengthCalculations(t *testing.T) {
-	tests := []struct {
+	var tests []struct {
 		dataEncoderType dataEncoderType
 		dataMode        dataMode
 		numSymbols      int
 		expectedLength  int
-	}{}
+	}
 
 	for i, test := range tests {
 		encoder := newDataEncoder(test.dataEncoderType)

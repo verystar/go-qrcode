@@ -9,7 +9,7 @@ import (
 	"os"
 	"strings"
 
-	qrcode "github.com/skip2/go-qrcode"
+	qrcode "github.com/verystar/go-qrcode"
 )
 
 func main() {
@@ -20,7 +20,7 @@ func main() {
 	disableBorder := flag.Bool("d", false, "disable QR Code border")
 	flag.Usage = func() {
 		fmt.Fprintf(os.Stderr, `qrcode -- QR Code encoder in Go
-https://github.com/skip2/go-qrcode
+https://github.com/verystar/go-qrcode
 
 Flags:
 `)
@@ -35,7 +35,7 @@ Usage:
 
   2. Save to file if "display" not available:
 
-       qrcode "homepage: https://github.com/skip2/go-qrcode" > out.png
+       qrcode "homepage: https://github.com/verystar/go-qrcode" > out.png
 
 `)
 	}
@@ -72,19 +72,19 @@ Usage:
 	checkError(err)
 
 	if *outFile == "" {
-		os.Stdout.Write(png)
+		_, _ = os.Stdout.Write(png)
 	} else {
 		var fh *os.File
 		fh, err = os.Create(*outFile + ".png")
 		checkError(err)
 		defer fh.Close()
-		fh.Write(png)
+		_, _ = fh.Write(png)
 	}
 }
 
 func checkError(err error) {
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "%s\n", err)
+		_, _ = fmt.Fprintf(os.Stderr, "%s\n", err)
 		os.Exit(1)
 	}
 }
