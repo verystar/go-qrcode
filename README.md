@@ -1,6 +1,6 @@
 # go-qrcode 
 
-Fork https://github.com/verystar/go-qrcode
+Fork https://github.com/skip2/go-qrcode
 
 [![build](https://github.com/verystar/go-qrcode/actions/workflows/build.yml/badge.svg)](https://github.com/verystar/go-qrcode/actions/workflows/build.yml)
 
