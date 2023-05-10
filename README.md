@@ -2,7 +2,7 @@
 
 Fork https://github.com/verystar/go-qrcode
 
-
+[![build](https://github.com/verystar/go-qrcode/actions/workflows/build.yml/badge.svg)](https://github.com/verystar/go-qrcode/actions/workflows/build.yml)
 
 Package qrcode implements a QR Code encoder.
 
